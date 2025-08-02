@@ -41,7 +41,8 @@ final GoRouter router = GoRouter(
           buildPageWithDefaultTransition(
             context: context,
             state: state,
-            child: const SplashScreen(),
+            // child: const SplashScreen(),
+            child: const StartScreen(),
           ),
     ),
     GoRoute(
