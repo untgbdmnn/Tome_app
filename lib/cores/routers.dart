@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tome_app/cores/scaffold_with_navbar.dart';
 import 'package:tome_app/pages/auth/forgot_password_screen.dart';
-import 'package:tome_app/pages/auth/login_screen.dart';
-import 'package:tome_app/pages/auth/register_screen.dart';
+import 'package:tome_app/pages/auth/auth_screen.dart';
+import 'package:tome_app/pages/dashboard/dashboard_screen.dart';
 import 'package:tome_app/pages/splash/splash_screen.dart';
 import 'package:tome_app/pages/splash/start_screen.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
-// final _sectionNavigatorKey = GlobalKey<NavigatorState>();
+final _sectionNavigatorKey = GlobalKey<NavigatorState>();
 
 CustomTransitionPage<T> buildPageWithDefaultTransition<T>({
   required BuildContext context,
@@ -41,8 +42,8 @@ final GoRouter router = GoRouter(
           buildPageWithDefaultTransition(
             context: context,
             state: state,
-            // child: const SplashScreen(),
             child: const StartScreen(),
+            // child: const DashboardScreen(),
           ),
     ),
     GoRoute(
@@ -66,16 +67,6 @@ final GoRouter router = GoRouter(
           ),
     ),
     GoRoute(
-      path: '/register',
-      name: 'register',
-      pageBuilder: (BuildContext context, GoRouterState state) =>
-          buildPageWithDefaultTransition(
-            context: context,
-            state: state,
-            child: const RegisterScreen(),
-          ),
-    ),
-    GoRoute(
       path: '/forgotpassword',
       name: 'forgotpassword',
       pageBuilder: (BuildContext context, GoRouterState state) =>
@@ -84,6 +75,54 @@ final GoRouter router = GoRouter(
             state: state,
             child: const ForgotPasswordScreen(),
           ),
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return ScaffoldWithNavbar(navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _sectionNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'beranda',
+              path: '/beranda',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const DashboardScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'search',
+              path: '/search',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const DashboardScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'borrow',
+              path: '/borrow',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const DashboardScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'profile',
+              path: '/profile',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const DashboardScreen(),
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tome_app/widgets/logo.dart'; // Pastikan path ini benar
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -244,7 +245,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed('beranda'); // Navigasi ke Dashboard
+            },
             child: const Text(
               'Log In',
               style: TextStyle(color: Colors.white, fontSize: 18),
