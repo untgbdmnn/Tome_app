@@ -21,7 +21,9 @@ class _StartScreenState extends ConsumerState<StartScreen> {
         title: Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed('login'); // Navigasi ke halaman login
+            },
             child: Text(
               'Skip',
               style: TextStyle(
@@ -99,6 +101,7 @@ Widget buildFirst(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Image.asset('assets/images/first.png', height: 300),
         Text(
           'Selamat datang di Tome!',
           textAlign: TextAlign.center,
@@ -127,6 +130,7 @@ Widget buildSecond(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Image.asset('assets/images/second.png', height: 300),
         Text(
           'Kelola Perpustakaan Anda!',
           textAlign: TextAlign.center,
@@ -155,6 +159,7 @@ Widget buildThird(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Image.asset('assets/images/third.png', height: 300),
         Text(
           'Kisah Baru Dimulai!',
           textAlign: TextAlign.center,
